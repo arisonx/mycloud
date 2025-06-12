@@ -9,11 +9,56 @@ datasource db {
 }
 
 model User {
-  id       String @id @default(uuid())
-  name     String
-  email    String @unique
-  password String
-  active   Boolean @default(false)
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  active    Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  storageProviders StorageProvider[]
+}
+
+model StorageProvider {
+  id        String              @id @default(uuid())
+  name      String
+  type      StorageProviderType
+  active    Boolean             @default(true)
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+  uploads   Upload[]
+  user      User                @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+enum StorageProviderType {
+  S3
+  CLOUDFLARE
+}
+
+enum UploadType {
+  IMAGE
+  VIDEO
+  AUDIO
+  DOCUMENT
+  FOLDER
+  OTHER
+}
+
+model Upload {
+  id                String          @id @default(uuid())
+  name              String
+  type              UploadType
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+  storageProviderId String
+  storageProvider   StorageProvider @relation(fields: [storageProviderId], references: [id])
+  path              String
+  size              Int
+  url               String
+  key               String
+  bucket            String
+  region            String
+  endpoint          String
 }

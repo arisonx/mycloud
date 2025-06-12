@@ -4,7 +4,7 @@ services:
     image: postgres:14.1-alpine
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD:postgres
+      POSTGRES_PASSWORD: postgres
       POSTGRES_DB: mycloud
       POSTGRES_PORT: 5432
       POSTGRES_HOST: localhost
@@ -26,6 +26,8 @@ services:
     ports:
       - "1025:1025"  # Porta SMTP
       - "8025:8025"  # Interface Web para visualizar os e-mails
+    volumes:
+      - ./data/mailhog:/var/mailhog
   redis:
     image: redis:latest
     container_name: mycloud_redis

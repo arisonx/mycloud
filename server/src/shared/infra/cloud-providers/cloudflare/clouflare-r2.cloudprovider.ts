@@ -11,7 +11,7 @@ import { lookup } from 'mime-types';
 import { EnvConfigService } from '@/shared/infra/env-config/env-config.service';
 
 @Injectable()
-export class CloudflareService {
+export class CloudflareR2CloudProvider {
   private readonly s3: S3Client;
   private readonly bucketName: string;
 
@@ -28,7 +28,7 @@ export class CloudflareService {
   }
 
   /**
-   * Generate a pre-signed URL for uploading an image
+   * Gerar uma URL pré-assinada para upload de uma imagem
    */
   async getUploadUrl(fileKey: string): Promise<string> {
     const fileExt = path.extname(fileKey);
@@ -50,7 +50,7 @@ export class CloudflareService {
   }
 
   /**
-   * Generate a pre-signed URL for fetching an image
+   * Gerar uma URL pré-assinada para download de uma imagem
    */
   async getDownloadUrl(fileKey: string): Promise<string> {
     const command = new GetObjectCommand({
@@ -62,7 +62,7 @@ export class CloudflareService {
   }
 
   /**
-   * Generate a pre-signed URL for deleting an image
+   * Gerar uma URL pré-assinada para deletar uma imagem
    */
   async getDeleteUrl(fileKey: string): Promise<string> {
     const command = new DeleteObjectCommand({

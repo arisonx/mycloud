@@ -1,7 +1,11 @@
-import { User } from "../user.entity";
+import { UserEntity } from "../entities/user.entity";
+import { RepositoryInterface } from "@/shared/domain/repositories/repository-contracts";
 
-export abstract class IUserRepository {
-    abstract create(user: User): Promise<User>;
-    abstract findAll(): Promise<User[]>;
-    abstract findById(id: string): Promise<User>;
+export abstract class IUserRepository implements RepositoryInterface<UserEntity> {
+  abstract create(user: UserEntity): Promise<UserEntity>;
+  abstract findAll(): Promise<UserEntity[]>;
+  abstract findById(id: string): Promise<UserEntity>;
+  abstract update(user: UserEntity): Promise<void>;
+  abstract delete(id: string): Promise<void>;
+  abstract insert(user: UserEntity): Promise<void>;
 }

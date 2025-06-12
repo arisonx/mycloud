@@ -54,8 +54,6 @@ export default function Dashboard() {
               <span className="text-xl font-bold text-primary">MyCloud</span>
             </Link>
           </div>
-
-          
           <div className="flex-1 overflow-auto py-2">
             <div className="px-4 py-2">
               <h3 className="text-xs font-semibold uppercase text-muted-foreground">
