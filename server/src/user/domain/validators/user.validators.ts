@@ -1,6 +1,6 @@
 import { ClassValidatorFields } from "@/shared/domain/validators/class-validator-fields";
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { UserProps } from "../entities/user.entity";
+import { UserProps } from "../entity/user.entity";
 
 export class UserRules {
   @IsString()
