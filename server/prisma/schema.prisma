@@ -30,14 +30,24 @@ model StorageProvider {
   createdAt DateTime            @default(now())
   updatedAt DateTime            @updatedAt
   uploads   Upload[]
-  user      User                @relation(fields: [userId], references: [id])
+  user      User                @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String
+  credentials StorageProviderCredentials[]
   @@map("storage_providers")
 }
 
+model StorageProviderCredentials {
+  id        String              @id @default(uuid())
+  storageProviderId String
+  storageProvider   StorageProvider @relation(fields: [storageProviderId], references: [id], onDelete: Cascade)
+  credentials Json
+  @@map("storage_provider_credentials")
+}
+
+
 enum StorageProviderType {
   S3
-  CLOUDFLARE
+  CLOUDFLARER2
   @@map("storage_provider_types")
 }
 

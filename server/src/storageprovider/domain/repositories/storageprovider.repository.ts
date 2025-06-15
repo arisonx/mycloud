@@ -8,4 +8,5 @@ export abstract class IStorageProviderRepository implements RepositoryInterface<
   abstract update(entity: StorageProviderEntity): Promise<void>;
   abstract delete(id: string): Promise<void>;
   abstract insert(entity: StorageProviderEntity): Promise<void>;
+  abstract findByName(name: string): Promise<StorageProviderEntity | null>;
 }

@@ -1,4 +1,7 @@
+/**
+ * @description The type of storage provider.
+ */
 export enum StorageProviderType {
   S3 = "S3",
-  CLOUDFLARE = "CLOUDFLARE",
+  CLOUDFLARER2 = "CLOUDFLARER2",
 }

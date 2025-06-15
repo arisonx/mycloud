@@ -11,9 +11,4 @@ export class UserController {
   async signup(@Body() signupDto: SignupDto) {
     return this.signupUsecase.execute(signupDto);
   }
-
-  @Get("save-cloud-provider")
-  async saveCloudProvider(@Req() req: Request) {
-    return this.saveCloudProviderUsecase.execute(req.user);
-  }
 }

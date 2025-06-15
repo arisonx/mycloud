@@ -35,4 +35,9 @@ export class PrismaCloudProviderRepository implements IStorageProviderRepository
     const data = StorageProviderModelMapper.toPersistence(entity);
     await this.prisma.storageProvider.create({ data });
   }
+
+  async findByName(name: string): Promise<StorageProviderEntity | null> {
+    const storageProvider = await this.prisma.storageProvider.findFirst({ where: { name } });
+    return storageProvider ? StorageProviderModelMapper.toEntity(storageProvider) : null;
+  }
 }

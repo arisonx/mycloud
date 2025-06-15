@@ -3,6 +3,7 @@ import { EntityValidationError } from "@/shared/domain/errors/validation-error";
 import { StorageProviderType } from "../enums/StorageProviderType.enum";
 import { StorageProviderRules } from "../validators/storageprovider.validator";
 import { StorageProviderValidatorFactory } from "../validators/storageprovider.validator";
+import { StorageProviderCredentials } from "../types/storage-credentials.type";
 
 export type StorageProviderProps = {
   name: string;
@@ -10,6 +11,7 @@ export type StorageProviderProps = {
   type: StorageProviderType;
   uploads: [];
   userId: string;
+  credentials?: StorageProviderCredentials;
 };
 
 export class StorageProviderEntity extends Entity<StorageProviderProps> {
