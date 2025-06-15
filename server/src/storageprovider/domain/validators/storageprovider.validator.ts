@@ -1,5 +1,5 @@
 import { ClassValidatorFields } from "@/shared/domain/validators/class-validator-fields";
-import { IsArray, IsEnum, IsNotEmpty, IsString, IsBoolean, IsObject } from "class-validator";
+import { IsArray, IsEnum, IsNotEmpty, IsString, IsBoolean, IsObject, IsOptional } from "class-validator";
 import { StorageProviderType } from "../enums/StorageProviderType.enum";
 import { StorageProviderProps } from "../entities/storageprovider.entity";
 import { StorageProviderCredentials } from "../types/storage-credentials.type";
@@ -24,7 +24,7 @@ export class StorageProviderRules {
   active: boolean;
 
   @IsObject()
-  @IsNotEmpty()
+  @IsOptional()
   credentials: StorageProviderCredentials;
 
   constructor({ name, active, type, uploads, userId }: StorageProviderProps) {

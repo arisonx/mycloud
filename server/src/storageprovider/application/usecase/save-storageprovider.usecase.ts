@@ -31,6 +31,7 @@ export class SaveStorageProviderUsecase implements UseCase<Input, Output> {
   ) {}
 
   async execute(input: Input): Promise<Output> {
+
     const userExists = await this.userRepository.findById(input.userId);
 
     if (!userExists) {

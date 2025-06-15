@@ -15,8 +15,8 @@ import { StorageproviderModule } from './storageprovider/storageprovider.module'
     CloudModule,
     StorageModule,
     UserModule,
-    AuthModule,
     StorageproviderModule,
+    AuthModule,
   ],
 })
 export class AppModule {}
