@@ -2,7 +2,6 @@ import { DynamicModule, Global, Module } from "@nestjs/common";
 import { PrismaService } from "./prisma/prisma.service";
 import { EnvConfigModule } from "../env-config/env-config.module";
 import { ConfigService } from "@nestjs/config";
-import { PrismaClient } from "@prisma/client";
 
 @Global()
 @Module({
@@ -10,18 +9,4 @@ import { PrismaClient } from "@prisma/client";
   providers: [ConfigService, PrismaService],
   exports: [PrismaService],
 })
-export class DatabaseModule {
-  static forRoot(prismaClient: PrismaClient): DynamicModule {
-    return {
-      module: DatabaseModule,
-      providers: [
-        {
-          provide: PrismaService,
-          useFactory: () => prismaClient as PrismaService,
-        },
-      ],
-      exports: [PrismaService],
-    };
-  }
-
-}
+export class DatabaseModule {}

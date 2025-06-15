@@ -5,7 +5,8 @@ import { IUserRepository } from "../domain/repositories/user.repository";
 import { PrismaUserRepository } from "./databases/prisma/repositories/prisma-user-repository";
 import { PrismaService } from "@/shared/infra/database/prisma/prisma.service";
 import { EnvConfigModule } from "@/shared/infra/env-config/env-config.module";
-
+import { IHashProvider } from "@/shared/application/providers/hash-provider";
+import { BcryptjsHashProvider } from "./provider/hash-provider/bcryptjs-hash.provider";
 @Module({
   controllers: [UserController],
   providers: [
@@ -13,7 +14,6 @@ import { EnvConfigModule } from "@/shared/infra/env-config/env-config.module";
       provide: "DBService",
       useClass: PrismaService,
     },
-
     {
       provide: IUserRepository,
       useFactory: (dbService: PrismaService) => {
@@ -21,16 +21,18 @@ import { EnvConfigModule } from "@/shared/infra/env-config/env-config.module";
       },
       inject: ["DBService"],
     },
-
+    {
+      provide: IHashProvider,
+      useClass: BcryptjsHashProvider,
+    },
     {
       provide: SignupUsecase,
-      useFactory: (userRepository: IUserRepository) => {
-        return new SignupUsecase(userRepository);
+      useFactory: (userRepository: IUserRepository, hashProvider: IHashProvider) => {
+        return new SignupUsecase(userRepository, hashProvider);
       },
-      inject: [IUserRepository],
+      inject: [IUserRepository, IHashProvider],
     },
   ],
   imports: [EnvConfigModule],
-  exports: [UserController],
 })
 export class UserModule {}

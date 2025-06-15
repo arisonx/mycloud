@@ -32,14 +32,12 @@ model StorageProvider {
   uploads   Upload[]
   user      User                @relation(fields: [userId], references: [id])
   userId    String
-
   @@map("storage_providers")
 }
 
 enum StorageProviderType {
   S3
   CLOUDFLARE
-
   @@map("storage_provider_types")
 }
 
@@ -50,7 +48,6 @@ enum UploadType {
   DOCUMENT
   FOLDER
   OTHER
-
   @@map("upload_types")
 }
 
@@ -69,6 +66,5 @@ model Upload {
   bucket            String
   region            String
   endpoint          String
-
   @@map("uploads")
 }
