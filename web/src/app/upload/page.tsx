@@ -27,7 +27,6 @@ import {
   CardTitle,
   CardFooter,
 } from "@/components/ui/card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Input } from "@/components/ui/input";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -36,122 +35,9 @@ import { Separator } from "@/components/ui/separator";
 
 export default function UploadPage() {
   return (
-    <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <div className="hidden border-r bg-card md:block">
-        <div className="flex h-full max-h-screen flex-col gap-2">
-          <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
-            <Link href="/" className="flex items-center gap-2 font-semibold">
-              <Package2 className="h-6 w-6 text-primary" />
-              <span className="text-xl font-bold text-primary">MyCloud</span>
-            </Link>
-          </div>
-          <div className="flex-1 overflow-auto py-2">
-            <div className="px-4 py-2">
-              <h3 className="text-xs font-semibold uppercase text-muted-foreground">
-                NAVEGAÇÃO
-              </h3>
-            </div>
-            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-              <Link
-                href="/visao-geral"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
-              >
-                <BarChart className="h-4 w-4" />
-                Visão Geral
-              </Link>
-              <Link
-                href="/dashboard"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
-              >
-                <Folder className="h-4 w-4" />
-                Meus Arquivos
-              </Link>
-              <Link
-                href="/upload"
-                className="flex items-center gap-3 rounded-lg bg-accent px-3 py-2 text-accent-foreground transition-all"
-              >
-                <Upload className="h-4 w-4" />
-                Upload
-              </Link>
-              <Link
-                href="/downloads"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
-              >
-                <Download className="h-4 w-4" />
-                Downloads
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
-              >
-                <Users className="h-4 w-4" />
-                Compartilhados
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
-              >
-                <HardDrive className="h-4 w-4" />
-                Lixeira
-              </Link>
-            </nav>
-            
-            <div className="px-4 py-2 mt-6">
-              <h3 className="text-xs font-semibold uppercase text-muted-foreground">
-                INTEGRAÇÕES
-              </h3>
-            </div>
-            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
-              >
-                <Package2 className="h-4 w-4" />
-                Amazon S3
-              </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground"
-              >
-                <Package2 className="h-4 w-4" />
-                Cloudflare R2
-              </Link>
-            </nav>
-          </div>
-          
-          <div className="mt-auto p-4">
-            <Card className="bg-gradient-to-br from-primary/20 to-primary/5 border-primary/20">
-              <CardHeader className="p-3 pb-0">
-                <CardTitle className="text-sm font-bold">Armazenamento</CardTitle>
-                <CardDescription className="text-xs">
-                  65% do seu espaço utilizado
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="p-3">
-                <Progress value={65} className="h-2 mb-2" />
-                <div className="flex justify-between items-center text-xs">
-                  <span>65GB de 100GB</span>
-                  <Button variant="link" className="p-0 h-auto text-xs">Upgrade</Button>
-                </div>
-              </CardContent>
-            </Card>
-            
-            <div className="mt-4 flex items-center gap-2">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>US</AvatarFallback>
-              </Avatar>
-              <div className="grid gap-0.5 text-xs">
-                <div className="font-medium">Usuário</div>
-                <div className="text-muted-foreground">usuario@email.com</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="flex flex-col">
-        <header className="flex h-14 items-center gap-4 border-b bg-background px-4 sticky top-0 z-10 lg:h-[60px] lg:px-6">
+    <div className="h-full w-full">
+      <div className="flex flex-col w-full h-full">
+        <header className="flex w-full h-14 items-center gap-4 border-b bg-background px-4 sticky lg:h-[60px] lg:px-6">
           <div className="flex-1">
             <h1 className="text-xl font-bold">Upload de Arquivos</h1>
             <p className="text-sm text-muted-foreground">Envie seus arquivos para a nuvem</p>

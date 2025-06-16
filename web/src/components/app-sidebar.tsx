@@ -8,7 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarFooter,  
+  SidebarFooter,
 } from "@/components/ui/sidebar";
 import {
   Settings,
@@ -22,8 +22,18 @@ import {
   Cloud,
 } from "lucide-react";
 import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Separator } from "./ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import { Button } from "@/components/ui/button";
+import { LogoLink } from "@/components/logo/logoLink";
 
 type SidebarItem = {
   label: string;
@@ -92,12 +102,12 @@ const sidebarItems: SidebarItem[] = [
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader className="px-8 flex">
-        <Image src="/logo.png" alt="Logo" width={120} height={120} />
+      <SidebarHeader className="px-8">
+        <LogoLink />
       </SidebarHeader>
-      <SidebarContent className="px-8" >
+      <SidebarContent className="px-8">
         {sidebarItems.map((item) => (
-          <SidebarGroup key={item.label}>            
+          <SidebarGroup key={item.label}>
             <SidebarGroupLabel>
               <h3 className="text-xs font-semibold uppercase text-muted-foreground">
                 {item.label}
@@ -121,8 +131,24 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
-      <Separator />
-      <SidebarFooter>
+      <SidebarFooter className="flex flex-col items-start gap-2 w-full">
+        <Card className="bg-gradient-to-br from-primary/20 to-primary/5 border-primary/20 w-full">
+          <CardHeader className="p-3 pb-0">
+            <CardTitle className="text-sm font-bold">Armazenamento</CardTitle>
+            <CardDescription className="text-xs">
+              65% do seu espaço utilizado
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="p-3">
+            <Progress value={65} className="h-2 mb-2" />
+            <div className="flex justify-between items-center text-xs">
+              <span>65GB de 100GB</span>
+              <Button variant="link" className="p-0 h-auto text-xs">
+                Upgrade
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
         <SidebarMenu>
           <SidebarMenuItem>
             <div className="flex items-center w-full justify-between py-2">

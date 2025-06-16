@@ -24,17 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR" className="w-screen h-screen">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background w-screen h-screen`}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <main>
-            <SidebarTrigger />
-            {children}
-          </main>
-        </SidebarProvider>
+        {/* <SidebarProvider>
+        <AppSidebar /> */}
+        <main className="w-full h-full">
+          {/* <SidebarTrigger /> */}
+          {children}
+        </main>
+        {/* </SidebarProvider> */}
       </body>
     </html>
   );
