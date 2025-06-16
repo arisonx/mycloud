@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAction } from "next-safe-action/hooks";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const formSchema = z.object({
@@ -35,13 +36,12 @@ export function SignupForm() {
     onSuccess: (resgiterUserResponse) => {
       if (resgiterUserResponse.data?.error) {
         console.log("LOG DO ERRO", resgiterUserResponse.data);
-        /*
-        toast({
-          title: "Erro",
-          description: resgiterUserResponse.data.message,
-          variant: "destructive",
+
+        toast.error(`Erro! ${resgiterUserResponse.data.message}`, {
           duration: 2000,
-        }); */
+          position: "top-right",
+          icon: "🚨",
+        });
         return;
       }
       console.log("LOG DO SUCESSO", resgiterUserResponse.data);
@@ -54,6 +54,7 @@ export function SignupForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log("LOG DO VALUES", values);
     RegisterUser(values);
   }
 
@@ -114,7 +115,11 @@ export function SignupForm() {
             {isPending ? "Aguarde..." : "Cadastrar-se"}
           </Button>
 
-          <Button variant="outline" className="w-full cursor-pointer" disabled={isPending}>
+          <Button
+            variant="outline"
+            className="w-full cursor-pointer"
+            disabled={isPending}
+          >
             Login com Google
           </Button>
         </div>

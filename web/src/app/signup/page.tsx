@@ -2,8 +2,12 @@ import Link from "next/link";
 import { CloudDrizzle } from "lucide-react";
 import { SignupForm } from "./components/forms/signupForm";
 import { Logo } from "@/components/logo";
+import { UserRegisterAction } from "@/actions/auth/signup";
+import { useAction } from "next-safe-action/hooks";
 
 export default function SignupPage() {
+
+
   return (
     <div className="w-full h-full flex flex-row items-center justify-center">
       <div className="w-[50%] h-full flex items-center">

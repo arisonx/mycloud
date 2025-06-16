@@ -15,7 +15,6 @@ export const UserRegisterAction = actionClient
   .inputSchema(SignupSchema)
   .outputSchema(UserRegisterActionOutputSchema)
   .action(async ({ parsedInput }) => {
-
     const url = `${process.env.NEXT_PUBLIC_API_URL}/users/signup`;
 
     const [error, response] = await trycatch(
@@ -29,6 +28,8 @@ export const UserRegisterAction = actionClient
     );
 
     if (response?.status !== 201 || error) {
+      console.log("LOG DO ERROR ---", error);
+      console.log("LOG DO RESPONSE ---", response);
       return {
         error: true,
         status: response?.status || 500,
