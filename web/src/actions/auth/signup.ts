@@ -4,6 +4,7 @@ import { actionClient } from "@/lib/safe-actions";
 import { SignupSchema } from "@/@types/schemas/signup-schema";
 import { z } from "zod";
 import { trycatch } from "@/utils/trycatch";
+import { signupWithEmailAndPassword } from "@/lib/auth-client";
 
 const UserRegisterActionOutputSchema = z.object({
   error: z.boolean(),
@@ -15,33 +16,22 @@ export const UserRegisterAction = actionClient
   .inputSchema(SignupSchema)
   .outputSchema(UserRegisterActionOutputSchema)
   .action(async ({ parsedInput }) => {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/users/signup`;
 
-    const [error, response] = await trycatch(
-      fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(parsedInput),
-      })
+    const  [error, response] = await trycatch(
+      signupWithEmailAndPassword(parsedInput.email, parsedInput.password, parsedInput.name)
     );
 
-    if (response?.status !== 201 || error) {
-      console.log("LOG DO ERROR ---", error);
-      console.log("LOG DO RESPONSE ---", response);
+    if (error) {
       return {
         error: true,
-        status: response?.status || 500,
-        message:
-          error?.message ||
-          "Tivemos um erro interno. Caso o erro persista contate o suporte.",
+        status: 500,
+        message: "Tivemos um erro interno. Caso o erro persista contate o suporte.",
       };
     }
 
     return {
       error: false,
-      status: response.status,
+      status: 201,
       message: "Cadastro realizado com sucesso!",
     };
   });
